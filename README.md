@@ -1,54 +1,41 @@
-# Driver-sleep-detection
-A smart safety system that detects eye closure using OpenCV and triggers hardware alerts and Telegram notifications.
+# Driver Sleep Detection
 
-[Youtube Video](https://youtu.be/Ro1PGaYQGAA?si=fOacbK1fvZLjC9Ne) 
+A Python and Arduino-based system that detects driver drowsiness and sends alerts.
 
-# Used 
+## Requirements
 
-- Python 3.11
+- Python 3.11+
 - OpenCV
-- MediaPipe
+- NumPy
 - SciPy
-
 - PySerial
-
-- Arduino UNO
-
+- Arduino Uno
 - ESP32
 
-- Telegram Bot API
-
-# Setup
-
-Install the Python dependencies:
+## Installation
 
 ```bash
-pip install opencv-python numpy mediapipe scipy pyserial
+pip install opencv-python numpy scipy pyserial
 ```
 
-Run the detector with a webcam:
+## Run
 
 ```bash
 python main.py --arduino-port COM3 --esp32-port COM6
 ```
 
-Use `--skip-serial` to run without connected hardware, or `--demo` to test the
-application without a webcam or serial devices. The Arduino and ESP32 sketches
-communicate with the Python application at 9600 baud.
+For a software-only test:
 
+```bash
+python main.py --demo
+```
 
+Use `--skip-serial` to disable Arduino and ESP32 communication. The hardware
+sketches use a 9600-baud serial connection.
 
-# Circuit Diagram 
-![Circuit](/circuit_image.png) 
-https://app.cirkitdesigner.com/project/30748c38-c57c-428b-a3e8-32bdcb254925
- 
- # Telegram Bot Setup for ESP32 Notification
+## Hardware
 
- 1. Create bot using BotFather
-
-2. Get Bot Token
-
-3. Get Chat ID using @userinfobot
-
-4. Add credentials in ESP32 code
+- Upload `Arduino Uno/sleep-detection.ino` to the Arduino Uno.
+- Upload `ESP32/notification.ino` to the ESP32.
+- Configure the ESP32 Wi-Fi and Telegram bot credentials before uploading.
 
